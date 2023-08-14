@@ -16,8 +16,8 @@ use std::env;
 //   the max token size or word count for GPT4 is 8192
 //   the max token size or word count for GPT35Turbo is 4096
 static CHAR_SOFT_LIMIT : usize = 9000;
-//static MODEL : ChatModel = ChatModel::GPT35Turbo;
-static MODEL : ChatModel = ChatModel::GPT4;
+static MODEL : ChatModel = ChatModel::GPT35Turbo;
+//static MODEL : ChatModel = ChatModel::GPT4;
 
 #[no_mangle]
 #[tokio::main(flavor = "current_thread")]
