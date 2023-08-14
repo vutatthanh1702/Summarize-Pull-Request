@@ -16,8 +16,8 @@ use std::env;
 //   the max token size or word count for GPT4 is 8192
 //   the max token size or word count for GPT35Turbo is 4096
 static CHAR_SOFT_LIMIT : usize = 9000;
-static MODEL : ChatModel = ChatModel::GPT35Turbo;
-//static MODEL : ChatModel = ChatModel::GPT4;
+//static MODEL : ChatModel = ChatModel::GPT35Turbo;
+static MODEL : ChatModel = ChatModel::GPT4;
 
 #[no_mangle]
 #[tokio::main(flavor = "current_thread")]
@@ -205,7 +205,7 @@ async fn handler(
             restart: true,
             system_prompt: Some(system),
         };
-        let question = "Here is a set of summaries for software source code patches. Each summary starts with a ------ line. Please write an overall summary considering all the individual summary. Please present the potential issues and errors first, following by the most important findings, in your summary.\n\n".to_string() + &reviews_text;
+        let question = "Here is a set of summaries for software source code patches. Each summary starts with a ------ line. Please write an overall summary considering all the individual summary. Please present the potential issues and errors first, following by the most important findings, in your summary. Next, Please present the ways to achieve the 5 five SOLID principles following by the most important findings, in your summary (Single-responsibility principle, Open-closed principle, Liskov substitution principle, Interface segregation principle, Dependency inversion principle) in this.\n\n".to_string() + &reviews_text;
         match openai.chat_completion(&chat_id, &question, &co).await {
             Ok(r) => {
                 resp.push_str(&r.choice);
