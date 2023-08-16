@@ -205,7 +205,7 @@ async fn handler(
             restart: true,
             system_prompt: Some(system),
         };
-        let question = "Here is a set of summaries for software source code patches. Each summary starts with a ------ line. Please write an overall summary considering all the individual summary. Please present the potential issues and errors first, and the ways to achieve the 5 five SOLID principles following by the most important findings, in your summary.\n\n".to_string() + &reviews_text;
+        let question = "Here is a set of summaries for software source code patches. Each summary starts with a ------ line. Please write an overall summary considering all the individual summary. Please present the potential issues and errors first, and the ways to achieve the 5 five SOLID principles following by the most important findings, in your summary. write 'look good' if the code don't have serious problem like just 1 line small change that show text in interface.\n\n".to_string() + &reviews_text;
         match openai.chat_completion(&chat_id, &question, &co).await {
             Ok(r) => {
                 resp.push_str(&r.choice);
