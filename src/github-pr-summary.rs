@@ -175,7 +175,7 @@ async fn handler(
             restart: true,
             system_prompt: Some(system),
         };
-        let question = "The following is a GitHub patch. Please summarize the key changes and identify potential problems and the ways to achieve the 5 five SOLID principles. Start with the most important findings. write 'look good' if the code don't have serious problem like just 1 line small change that show text in interface.\n\n".to_string() + truncate(commit, CHAR_SOFT_LIMIT);
+        let question = "The following is a GitHub patch. Please summarize the key changes and identify potential problems and the ways to achieve the 5 five SOLID principles. Start with the most important findings.\n\n".to_string() + truncate(commit, CHAR_SOFT_LIMIT);
         match openai.chat_completion(&chat_id, &question, &co).await {
             Ok(r) => {
                 if reviews_text.len() < CHAR_SOFT_LIMIT {
